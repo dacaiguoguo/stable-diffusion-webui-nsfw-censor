@@ -65,8 +65,8 @@ class NsfwCheckScript(scripts.Script):
         print("dacaiguoguo:shared.opts.filter_nsfw:", shared.opts.filter_nsfw)
 
         # 如果 NSFW 过滤没有开启，则不执行任何操作
-        if shared.opts.filter_nsfw is False:
-            return
+        # if shared.opts.filter_nsfw is False:
+        #    return
 
         # 处理图片，例如应用审查
         images = kwargs['images']
