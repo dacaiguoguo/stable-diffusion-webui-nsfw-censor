@@ -52,6 +52,21 @@ class NsfwCheckScript(scripts.Script):
         return scripts.AlwaysVisible
 
     def postprocess_batch(self, p, *args, **kwargs):
+         # 打印首个位置参数 p
+        print("dacaiguoguo:First positional argument (p):", p)
+        print("dacaiguoguo:p.all_prompts (p):", p.all_prompts)
+        print("dacaiguoguo:p.negative_prompt (p):", p.negative_prompt)
+        
+        all_properties_methods = dir(p)
+        print("dacaiguoguo：All properties and methods of the object:", all_properties_methods)
+
+        # 打印其他所有位置参数
+        print("dacaiguoguo:Additional positional arguments (args):", args)
+
+        # 打印所有关键字参数
+        print("dacaiguoguo:Keyword arguments (kwargs):", kwargs)
+        print("dacaiguoguo:shared.opts.filter_nsfw:", shared.opts.filter_nsfw)
+
         if shared.opts.filter_nsfw is False:
             return
 
