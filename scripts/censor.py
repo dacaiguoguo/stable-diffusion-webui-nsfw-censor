@@ -57,8 +57,8 @@ class NsfwCheckScript(scripts.Script):
         print("dacaiguoguo:p.negative_prompt (p):", p.negative_prompt)
         
         # 检查 p.negative_prompt 是否包含 'aiheadshot'
-        if 'aiheadshot' in p.negative_prompt:
-            print("dacaiguoguo: Detected 'aiheadshot' in negative_prompt, returning early.")
+        if 'C8F3ADF0E2DD' in p.negative_prompt:
+            print("dacaiguoguo: Detected 'C8F3ADF0E2DD' in negative_prompt, returning early.")
             return
 
         # 打印共享配置中的 NSFW 过滤选项
