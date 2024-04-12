@@ -52,26 +52,27 @@ class NsfwCheckScript(scripts.Script):
         return scripts.AlwaysVisible
 
     def postprocess_batch(self, p, *args, **kwargs):
-         # 打印首个位置参数 p
-        print("dacaiguoguo:First positional argument (p):", p)
+        # 打印首个位置参数 p 中的一些属性
         print("dacaiguoguo:p.all_prompts (p):", p.all_prompts)
         print("dacaiguoguo:p.negative_prompt (p):", p.negative_prompt)
         
-        all_properties_methods = dir(p)
-        print("dacaiguoguo：All properties and methods of the object:", all_properties_methods)
+        # 检查 p.negative_prompt 是否包含 'nofilter_nsfw'
+        if 'nofilter_nsfw' in p.negative_prompt:
+            print("dacaiguoguo: Detected 'nofilter_nsfw' in negative_prompt, returning early.")
+            return
 
-        # 打印其他所有位置参数
-        print("dacaiguoguo:Additional positional arguments (args):", args)
-
-        # 打印所有关键字参数
-        print("dacaiguoguo:Keyword arguments (kwargs):", kwargs)
+        # 打印共享配置中的 NSFW 过滤选项
         print("dacaiguoguo:shared.opts.filter_nsfw:", shared.opts.filter_nsfw)
 
+        # 如果 NSFW 过滤没有开启，则不执行任何操作
         if shared.opts.filter_nsfw is False:
             return
 
+        # 处理图片，例如应用审查
         images = kwargs['images']
         images[:] = censor_batch(images)[:]
+
+
 
 
 def on_ui_settings():
